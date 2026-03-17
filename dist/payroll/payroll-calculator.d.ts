@@ -1,0 +1,108 @@
+type EmployeeStatus = 'chinh_thuc' | 'thai_san' | 'nghi_viec_ct' | 'het_thu_viec' | 'thu_viec' | 'nghi_viec_tv';
+export interface CalcInput {
+    employee: {
+        id: string;
+        fullName: string;
+        email: string;
+        bankAccount: string | null;
+        bankName: string | null;
+        department: string | null;
+        status: EmployeeStatus;
+        dependents: number;
+        costAccount: string | null;
+    };
+    timekeeping: {
+        standardDays: number;
+        actualDays: number;
+        probationDays: number;
+        officialDays: number;
+        remainingLeave: number;
+        unpaidLeaveProbation: number;
+        unpaidLeaveOfficial: number;
+    };
+    socialInsurance: {
+        baseSI: number;
+        bhxh: number;
+        bhyt: number;
+        bhtn: number;
+        siEmployee: number;
+        bhxhEmployer: number;
+        bhytEmployer: number;
+        bhtnEmployer: number;
+        siEmployer: number;
+        unionFee: number;
+    };
+    variableIncome: {
+        commission: number;
+        commissionDetail: string;
+        bonus: number;
+        bonusDetail: string;
+        otherIncome: number;
+        otherIncomeDetail: string;
+        otherAllowance: number;
+        otherAllowanceDetail: string;
+    };
+    grossPackage: {
+        baseSalary: number;
+        lunch: number;
+        phone: number;
+    };
+    retroDeduction?: number;
+    retroAddition?: number;
+}
+export interface CalcOutput {
+    pkgBaseSalary: number;
+    pkgLunch: number;
+    pkgPhone: number;
+    pkgPerfBonus: number;
+    pkgTotal: number;
+    probPkgBaseSalary: number;
+    probPkgLunch: number;
+    probPkgPerfBonus: number;
+    probPkgTotal: number;
+    standardDays: number;
+    actualDays: number;
+    probationDays: number;
+    officialDays: number;
+    unpaidLeaveProbation: number;
+    unpaidLeaveOfficial: number;
+    remainingLeave: number;
+    proratedBaseSalary: number;
+    proratedPerfBonus: number;
+    totalLunchActual: number;
+    totalPhoneActual: number;
+    proratedTotal: number;
+    commission: number;
+    bonus: number;
+    otherIncome: number;
+    otherAllowance: number;
+    totalVariableIncome: number;
+    grossSalary: number;
+    nonTaxableLunch: number;
+    nonTaxablePhone: number;
+    taxableIncome: number;
+    siBase: number;
+    siBhxh: number;
+    siBhyt: number;
+    siBhtn: number;
+    siEmployeeTotal: number;
+    personalDeduction: number;
+    dependentCount: number;
+    dependentDeduction: number;
+    taxMethod: 'progressive' | 'flat_10';
+    taxAssessableIncome: number;
+    pit: number;
+    unionFee: number;
+    retroDeduction: number;
+    retroAddition: number;
+    totalDeduction: number;
+    netSalary: number;
+    siEmployerBhxh: number;
+    siEmployerBhyt: number;
+    siEmployerBhtn: number;
+    siEmployerTotal: number;
+    employerUnionFee: number;
+    totalEmployerCost: number;
+}
+export declare function calculatePayrollRecord(input: CalcInput): CalcOutput;
+export {};

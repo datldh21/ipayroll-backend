@@ -1,0 +1,30 @@
+import { User } from './user.entity';
+import { TaxBracketVersion } from './tax-bracket-version.entity';
+import { SiRateVersion } from './si-rate-version.entity';
+import { PayrollRecord } from './payroll-record.entity';
+export type PayrollBatchStatus = 'draft' | 'pending_approval' | 'approved' | 'paid';
+export declare class PayrollBatch {
+    id: string;
+    year: number;
+    month: number;
+    status: PayrollBatchStatus;
+    taxBracketVersionId: string | null;
+    taxBracketVersion: TaxBracketVersion | null;
+    siRateVersionId: string | null;
+    siRateVersion: SiRateVersion | null;
+    totalEmployees: number;
+    totalGross: number;
+    totalNet: number;
+    totalPit: number;
+    totalSiEmployee: number;
+    totalEmployerCost: number;
+    createdBy: string;
+    createdByUser: User;
+    createdAt: Date;
+    submittedAt: Date | null;
+    approvedBy: string | null;
+    approvedByUser: User | null;
+    approvedAt: Date | null;
+    paidAt: Date | null;
+    records: PayrollRecord[];
+}
