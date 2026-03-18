@@ -53,7 +53,7 @@ export class PayrollService {
   private recordToResponse(r: PayrollRecord) {
     return {
       id: r.id,
-      employeeId: r.employeeId,
+      employeeId: (r as any).employee?.employeeCode ?? r.employeeId,
       employeeName: (r as any).employee?.fullName ?? '',
       department: (r as any).employee?.department ?? '',
       status: (r as any).employee?.status ?? '',

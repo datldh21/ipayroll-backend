@@ -63,7 +63,7 @@ let PayrollService = class PayrollService {
     recordToResponse(r) {
         return {
             id: r.id,
-            employeeId: r.employeeId,
+            employeeId: r.employee?.employeeCode ?? r.employeeId,
             employeeName: r.employee?.fullName ?? '',
             department: r.employee?.department ?? '',
             status: r.employee?.status ?? '',

@@ -13,7 +13,7 @@ let GrossPackageConfigService = class GrossPackageConfigService {
         return {
             baseSalary: 0,
             lunch: 1_000_000,
-            phone: 500_000,
+            phone: 0,
         };
     }
 };

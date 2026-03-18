@@ -17,7 +17,7 @@ export declare class ProposalsController {
     constructor(proposalsService: ProposalsService);
     findAll(): Promise<{
         id: string;
-        employeeId: string;
+        employeeId: any;
         employeeName: string;
         department: string;
         type: "timekeeping" | "payroll";
@@ -33,7 +33,7 @@ export declare class ProposalsController {
     }[]>;
     create(dto: CreateProposalDto): Promise<{
         id: string;
-        employeeId: string;
+        employeeId: any;
         employeeName: string;
         department: string;
         type: "timekeeping" | "payroll";

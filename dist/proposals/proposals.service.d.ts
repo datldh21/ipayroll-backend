@@ -7,7 +7,7 @@ export declare class ProposalsService {
     constructor(repo: Repository<Proposal>, employeeRepo: Repository<Employee>);
     findAll(): Promise<{
         id: string;
-        employeeId: string;
+        employeeId: any;
         employeeName: string;
         department: string;
         type: "timekeeping" | "payroll";
@@ -30,7 +30,7 @@ export declare class ProposalsService {
         description: string;
     }): Promise<{
         id: string;
-        employeeId: string;
+        employeeId: any;
         employeeName: string;
         department: string;
         type: "timekeeping" | "payroll";

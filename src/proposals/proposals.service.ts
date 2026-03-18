@@ -20,7 +20,7 @@ export class ProposalsService {
     });
     return list.map((p) => ({
       id: p.id,
-      employeeId: p.employeeId,
+      employeeId: (p as any).employee?.employeeCode ?? p.employeeId,
       employeeName: p.employee?.fullName ?? '',
       department: p.employee?.department ?? '',
       type: p.type,
@@ -44,8 +44,14 @@ export class ProposalsService {
     subject: string;
     description: string;
   }) {
+    let employeeId = dto.employeeId;
+    if (!/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(employeeId)) {
+      const emp = await this.employeeRepo.findOne({ where: { employeeCode: employeeId } });
+      if (emp) employeeId = emp.id;
+    }
     const proposal = this.repo.create({
       ...dto,
+      employeeId,
       status: 'pending',
     });
     const saved = await this.repo.save(proposal);
@@ -55,7 +61,7 @@ export class ProposalsService {
     });
     return {
       id: withEmp!.id,
-      employeeId: withEmp!.employeeId,
+      employeeId: (withEmp as any).employee?.employeeCode ?? withEmp!.employeeId,
       employeeName: withEmp!.employee?.fullName ?? '',
       department: withEmp!.employee?.department ?? '',
       type: withEmp!.type,
